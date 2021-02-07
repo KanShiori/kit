@@ -1,0 +1,12 @@
+# more info see: https://golangci-lint.run/usage/configuration/
+linters:
+  enable:
+    - govet
+    - misspell
+  disable:
+  disable-all: false
+  presets:
+  fast: false
+
+# all available settings of specific linters
+linters-settings:
