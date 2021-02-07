@@ -148,7 +148,7 @@ func (r *Runner) run() {
 			msg := fmt.Sprintf("catch panic in Runner.run {panic=%s, name=%s}: %s", x, r.name, stackBuf[0:size])
 
 			if r.Logger != nil {
-				r.Logger.Write([]byte(msg))
+				_, _ = r.Logger.Write([]byte(msg))
 			}
 			panic(x)
 		}
