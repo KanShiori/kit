@@ -4,6 +4,7 @@ linters:
     - govet
     - misspell
   disable:
+    - unused
   disable-all: false
   presets:
   fast: false

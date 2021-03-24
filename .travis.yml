@@ -1,7 +1,18 @@
 language: go
 
+env:
+  global:
+    - GO111MODULE=on
+
+before_install:
+  - go get github.com/stretchr/testify
+
 before_script:
   - curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.38.0
 
 script:
-  - golangci-lint run
+  - make lint
+  - go test -race -v ./...
+
+go:
+  - 1.13
