@@ -5,7 +5,6 @@ linters:
     - misspell
   disable:
     - unused
-    - goanalysis_metalinter
   disable-all: false
   presets:
   fast: false
