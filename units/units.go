@@ -31,11 +31,11 @@ var (
 	suffixValues = map[string]Size{
 		"b": Bit, "B": Byte,
 		"k": KiB, "K": KiB, "KB": KB, "KiB": KiB,
-		"Kb": Kb, "Kb/s": Kb, "Kbps": Kb,
+		"kb": Kb, "Kb": Kb,
 		"m": MiB, "M": MiB, "MB": MB, "MiB": MiB,
-		"Mb": Mb, "Mb/s": Mb, "Mbps": Mb,
+		"mb": Mb, "Mb": Mb,
 		"g": GiB, "G": GiB, "GB": GB, "GiB": GiB,
-		"Gb": Gb, "Gb/s": Gb, "Gbps": Gb,
+		"gb": Gb, "Gb": Gb,
 		"t": TiB, "T": TiB, "TB": TB, "TiB": TiB,
 	}
 
@@ -72,7 +72,7 @@ func ParseSize(s string) (Size, error) {
 			if err != nil {
 				return 0, fmt.Errorf("bad format 2: %s", s)
 			}
-			size = Size(value) * pair.val
+			size = Size(value * float64(pair.val))
 			break
 		}
 	}
@@ -80,10 +80,7 @@ func ParseSize(s string) (Size, error) {
 	return size, nil
 }
 
-func AsSize(v float64, unit int64) Size {
-	if v < 0 {
-		return Size(v)
-	}
+func AsSize(v float64, unit Size) Size {
 	return Size(v * float64(unit))
 }
 
